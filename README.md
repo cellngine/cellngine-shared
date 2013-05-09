@@ -1,3 +1,4 @@
 cellngine-shared
 ================
-2
+
+These are shared components between cellngine-client and cellngine-server.
