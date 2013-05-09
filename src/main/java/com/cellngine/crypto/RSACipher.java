@@ -28,18 +28,18 @@ import org.apache.commons.logging.LogFactory;
  */
 public class RSACipher extends AsymmetricCipher
 {
-	private static Log LOG = LogFactory.getLog(RSACipher.class);
+	private static Log			LOG					= LogFactory.getLog(RSACipher.class);
 
-	public static final String ALGORITHM = "RSA";
-	public static final String BLOCK_CIPHER_MODE = "ECB";
-	public static final String PADDING = "PKCS1Padding";
-	public static final String TRANSFORMATION = ALGORITHM + "/" + BLOCK_CIPHER_MODE + "/" + PADDING;
+	public static final String	ALGORITHM			= "RSA";
+	public static final String	BLOCK_CIPHER_MODE	= "ECB";
+	public static final String	PADDING				= "PKCS1Padding";
+	public static final String	TRANSFORMATION		= ALGORITHM + "/" + BLOCK_CIPHER_MODE + "/" + PADDING;
 
-	private Cipher cipher;
-	private final SecureRandom random = new SecureRandom();
+	private Cipher				cipher;
+	private final SecureRandom	random				= new SecureRandom();
 
-	private PublicKey publicKey = null;
-	private PrivateKey privateKey = null;
+	private PublicKey			publicKey			= null;
+	private PrivateKey			privateKey			= null;
 
 	public RSACipher()
 	{
@@ -109,8 +109,7 @@ public class RSACipher extends AsymmetricCipher
 		}
 	}
 
-	private <T extends java.security.spec.KeySpec> T getKeySpec(final Key key,
-			final Class<T> keyClass)
+	private <T extends java.security.spec.KeySpec> T getKeySpec(final Key key, final Class<T> keyClass)
 	{
 		final KeyFactory factory = this.getKeyFactory();
 
@@ -159,8 +158,7 @@ public class RSACipher extends AsymmetricCipher
 	{
 		final byte[] modulusEnc = modulus.toByteArray();
 		final byte[] exponentEnc = exponent.toByteArray();
-		final ByteBuffer buffer = ByteBuffer.allocate(2 * 4 + modulusEnc.length
-				+ exponentEnc.length);
+		final ByteBuffer buffer = ByteBuffer.allocate(2 * 4 + modulusEnc.length + exponentEnc.length);
 		buffer.putInt(modulusEnc.length);
 		buffer.put(modulusEnc);
 		buffer.putInt(exponentEnc.length);

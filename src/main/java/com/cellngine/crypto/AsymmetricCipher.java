@@ -27,7 +27,8 @@ public abstract class AsymmetricCipher
 	public abstract void generateKeypair(int keyLength);
 
 	/**
-	 * @return The public key in its encoded form, or <code>null</code> if no public key has been generated or imported
+	 * @return The public key in its encoded form, or <code>null</code> if no public key has been
+	 *         generated or imported
 	 *         yet.
 	 */
 	public abstract byte[] getPublicKey();
@@ -36,14 +37,16 @@ public abstract class AsymmetricCipher
 	 * Loads an encoded public key.
 	 *
 	 * @param fromBytes
-	 *            The encoded form of the public key as returned by {@link AsymmetricCipher#getPublicKey()}.
+	 *            The encoded form of the public key as returned by
+	 *            {@link AsymmetricCipher#getPublicKey()}.
 	 * @throws EncodingException
 	 *             If the public key can not be read from the specified byte array.
 	 */
 	public abstract void loadPublicKey(byte[] fromBytes);
 
 	/**
-	 * @return The private key in its encoded form, or <code>null</code> if no private key has been generated or
+	 * @return The private key in its encoded form, or <code>null</code> if no private key has been
+	 *         generated or
 	 *         imported yet.
 	 */
 	public abstract byte[] getPrivateKey();
@@ -52,7 +55,8 @@ public abstract class AsymmetricCipher
 	 * Loads an encoded private key.
 	 *
 	 * @param fromBytes
-	 *            The encoded form of the public key as returned by {@link AsymmetricCipher#getPrivateKey()}.
+	 *            The encoded form of the public key as returned by
+	 *            {@link AsymmetricCipher#getPrivateKey()}.
 	 * @throws EncodingException
 	 *             If the private key can not be read from the specified byte array.
 	 */
@@ -87,7 +91,8 @@ public abstract class AsymmetricCipher
 	public abstract byte[] decrypt(byte[] bytes);
 
 	/**
-	 * Thrown when a {@link AsymmetricCipher} implementation is told to use or return a key it doesn't have.
+	 * Thrown when a {@link AsymmetricCipher} implementation is told to use or return a key it
+	 * doesn't have.
 	 *
 	 * @author qwer <hellraz0r.386@googlemail.com>
 	 */
@@ -98,7 +103,7 @@ public abstract class AsymmetricCipher
 
 	public class CryptoException extends RuntimeException
 	{
-		private static final long serialVersionUID		= -7254592985328820067L;
+		private static final long	serialVersionUID	= -7254592985328820067L;
 
 		public CryptoException(final Exception e)
 		{

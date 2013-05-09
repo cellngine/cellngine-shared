@@ -6,7 +6,7 @@ import com.cellngine.crypto.RSACipher;
 
 public class RSACipherTest extends TestCase
 {
-	final RSACipher r = new RSACipher();
+	final RSACipher	r	= new RSACipher();
 
 	@Override
 	protected void setUp() throws Exception
