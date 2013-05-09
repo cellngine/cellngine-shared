@@ -100,6 +100,9 @@ public abstract class AsymmetricCipher
 	{
 		private static final long serialVersionUID		= -7254592985328820067L;
 
-		public CryptoException(final Exception e)		{ super(e); }
+		public CryptoException(final Exception e)
+		{
+			super(e);
+		}
 	}
 }
