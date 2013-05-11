@@ -16,6 +16,8 @@
 */
 package com.cellngine.test.crypto;
 
+import java.nio.charset.Charset;
+
 import junit.framework.TestCase;
 
 import com.cellngine.crypto.RSACipher;
@@ -23,22 +25,53 @@ import com.cellngine.crypto.RSACipher;
 public class RSACipherTest extends TestCase
 {
 	final RSACipher	r	= new RSACipher();
-
+	
 	@Override
 	protected void setUp() throws Exception
 	{
 		this.r.generateKeypair(512);
-
+		
 		super.setUp();
 	}
-
+	
 	public void test1() throws Exception
 	{
 		this.r.encrypt("Test".getBytes("UTF-8"));
 	}
-
+	
 	public void test2() throws Exception
 	{
 		this.r.encrypt("tseT".getBytes("UTF-8"));
+	}
+	
+	public void test3() throws Exception
+	{
+		checkEncryptDecrypt(r, r);
+	}
+	
+	public void test4() throws Exception
+	{
+		final RSACipher clone = r.clone();
+		checkEncryptDecrypt(r, clone);
+		checkEncryptDecrypt(clone, r);
+		
+		final RSACipher encrypt = new RSACipher();
+		encrypt.loadPublicKey(r.getPublicKey());
+		
+		final RSACipher decrypt = new RSACipher();
+		decrypt.loadPrivateKey(r.getPrivateKey());
+		
+		checkEncryptDecrypt(encrypt, decrypt);
+	}
+	
+	private void checkEncryptDecrypt(final RSACipher encypt, final RSACipher decrypt) throws Exception
+	{
+		final Charset testCharset = Charset.forName("UTF-8");
+		final String testString = "Test";
+		final byte[] testBytes = testString.getBytes(testCharset);
+		
+		assertTrue(new String(decrypt.decrypt(encypt.encrypt(testBytes)), testCharset).equals(testString));
+		assertFalse(new String(decrypt.decrypt(encypt.encrypt("test".getBytes(testCharset))), testCharset)
+				.equals(testString));
 	}
 }
