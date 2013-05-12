@@ -14,36 +14,21 @@
 	You should have received a copy of the GNU Affero General Public License
 	along with cellngine.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.cellngine.test.crypto;
-
-import java.util.Arrays;
+package com.cellngine.test.util;
 
 import junit.framework.TestCase;
 
-import com.cellngine.CO;
-import com.cellngine.crypto.RC4;
-import com.cellngine.crypto.StreamCipher;
+import com.cellngine.util.FXMLValidator;
 
 /**
  * 
  * @author qwer <hellraz0r.386@googlemail.com>
  */
-public class RC4CipherTest extends TestCase
+public class FXMLValidatorTest extends TestCase
 {
-	public void test1()
+	public void test1() throws Exception
 	{
-		final byte[] key = "Key".getBytes();
-		final byte[] plaintext = "Plaintext".getBytes();
-		
-		final StreamCipher encCipher = new RC4(key);
-		final byte[] buf = Arrays.copyOf(plaintext, plaintext.length);
-		
-		encCipher.encrypt(buf);
-		assertEquals(CO.bytesToHex(buf), "9AE466368E7EA8F2F5");
-		
-		final StreamCipher decCipher = new RC4(key);
-		decCipher.decrypt(buf);
-		
-		assertTrue(Arrays.equals(buf, plaintext));
+		final FXMLValidator validator = new FXMLValidator();
+		validator.validate(this.getClass().getResourceAsStream("FXMLValidatorTest.fxml"));
 	}
 }

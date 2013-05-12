@@ -77,8 +77,6 @@ public class CO
 	 *             bytes could be read.
 	 * @throws IllegalArgumentException
 	 *             If <code>length</code> is smaller than zero.
-	 * @throws NullPointerException
-	 *             If <code>source</code> is null.
 	 */
 	public static byte[] readFully(final InputStream source, final int length) throws IOException
 	{

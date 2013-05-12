@@ -1,0 +1,323 @@
+/* This file defines all allowed FXML element and attribute types.
+ * ---------------------------------------------------------------
+ * Allowed elements and attributes are defined in two pairs of brackets with a colon in between them:
+ * ( allowedElement ) : ( allowedAttribute )
+ * 
+ * Multiple elements or attributes in a bracket must be separated by commas:
+ * ( firstAllowedElement, anotherAllowedElement ) : ( firstAllowedAttribute, anotherAllowedAttribute )
+ * 
+ * By specifying * as the allowed element, attributes can be allowed on any kind of element:
+ * ( * ) : ( thisAttributeIsAllowedAnywhere )
+ * 
+ * Similarly, by specifying * as the allowed attribute, elements can be allowed to carry any kind of attributes:
+ * ( thisElementCanCarryAnyAttribute ) : ( * )
+ * 
+ * Whitespaces as well as comments are ignored.
+ * Element and attribute names are case sensitive and may consist of any character except whitespaces, commas or a
+ * closing bracket.
+ * 
+ * For those not knowing what XML elements and attributes are, here's an example: <myElement attribute="true" />
+ * 
+ * TODO:
+ * - ImageView (+ allowing JavaFX to load images from resource files)
+ * - TableView
+ * - TreeView
+ * - Shapes
+ * 
+ * More complex things that must be handled in the validation code include the following:
+ * - imports (e.g. <?import javafx.scene.control.*?>)
+ * - allowed fx:factory values
+ * 
+ * For more information on FXML, see
+ * http://docs.oracle.com/javafx/2/api/javafx/fxml/doc-files/introduction_to_fxml.html
+ */
+
+
+/* ---- Basic Datatypes ---- */
+(
+	Boolean,
+	Byte, Short, Integer, Long,
+	Float, Double,
+	String
+)
+: ( fx:value )
+
+/* ---- Collections ---- */
+/* Note: allowed fx:factory values are specified in the FXMLValidator class. */
+( FXCollections	) : ( )
+( HashMap		) : ( * )
+
+/* ---- XML built-in ---- */
+( ?xml		) : ( version, encoding )
+( *			) : ( xmlns:fx )
+
+/* ---- FXML elements ---- */
+
+( fx:reference	) : ( source ) 
+
+/* ---- Properties that are allowed on all nodes ---- */
+(*) :
+(
+	/* General */
+	id,
+	fx:id,
+	disable,
+	
+	/* Size / layout options */
+	minWidth,
+	minHeight,
+	prefWidth,
+	prefHeight,
+	maxWidth,
+	maxHeight,
+	fitWidth,
+	fitHeight,
+	
+	layoutX,
+	layoutY,
+	padding,
+	
+	/* Drawing */
+	visible,
+	opacity,
+	blendMode,
+	scaleX,
+	scaleY,
+	scaleZ,
+	translateX,
+	translateY,
+	translateZ,
+	
+	/* Cache */
+	cache,
+	cacheHint,
+	
+	/* Text display */
+	text,
+	textAlignment,
+	textOverrun,
+	textFill,
+	wrapText,
+	ellipsisString,
+	underline,
+	
+	/* Miscellaneous */
+	alignment,
+	contentDisplay,
+	focusTraversable,
+	pickOnBounds,
+	mnemonicParsing,
+	depthTest,
+	graphicTextGap,
+	mouseTransparent,
+)
+
+
+/* ----------------- */
+/* ---- Effects ---- */
+/* ----------------- */
+
+/* ---- Rotation ---- */
+( *				) : ( rotate )
+( rotationAxis	) : ( )
+( Point3D		) : ( x, y, z )
+
+
+/* -------------------- */
+/* ---- Conatiners ---- */
+/* -------------------- */
+
+/* ---- Common constraints / elements ---- */
+( FlowPane, GridPane, HBox, VBox, TilePane	) : ( hgap, vgap )
+( FlowPane, SplitPane, TilePane				) : ( orientation )
+( padding, children, content				) : ( )
+( Insets									) : ( bottom, left, right, top)
+
+/* ---- Accordion ---- */
+( Accordion						) : ( expandedPane )
+( expandedPane, panes, content	) : ( )
+
+/* ---- AnchorPane ---- */
+( AnchorPane 	) : ( )
+( *				) : ( AnchorPane.bottomAnchor, AnchorPane.leftAnchor, AnchorPane.rightAnchor, AnchorPane.topAnchor )
+
+/* ---- FlowPane ---- */
+( FlowPane	) : ( columnHalignment, rowValignment, prefWrapLength, hgap, vgap)
+
+/* ---- GridPane ---- */
+( GridPane							) : ( gridLinesVisible, hgap, vgap)
+( columnConstraints, rowConstraints	) : ( )
+( ColumnConstraints, RowConstraints	) : ( hgrow, vgrow )
+
+/* ---- HBox / VBox ---- */
+( HBox			) : ( fillHeight )
+( VBox			) : ( fillWidth )
+( HBox, VBox	) : ( spacing )
+
+/* ---- Pane ---- */
+( Pane	) : ( )
+
+/* ---- ScrollPane ---- */
+( ScrollPane	) : ( fitToHeight, fitToWidth, hbarPolicy, vbarPolicy, hmin, hvalue, hmax, vmin, vvalue, vmax,
+					  pannable, prefViewportHeight, prefViewportWidth )
+
+/* ---- SplitPane ---- */
+( SplitPane	) : ( dividerPositions )
+( items		) : ( )
+
+/* ---- StackPane ---- */
+( StackPane	) : ( )
+
+/* ---- TabPane ---- */
+( TabPane	) : ( rotateGraphic, side, tabClosingPolicy )
+( tabs		) : ( )
+( Tab		) : ( closable, text )
+
+/* ---- TilePane ---- */
+( TilePane	) : ( tileAlignment )
+
+/* ---- TitledPane ---- */
+( TitledPane	) : ( animated, collapsible, expanded, content )
+
+/* ---- ToolBar ---- */
+( ToolBar	) : ( )
+
+
+/* ------------------ */
+/* ---- Controls ---- */
+/* ------------------ */
+
+/* ---- Common constraints / elements ---- */
+( ColorPicker, ComboBox, ListView, PasswordField, TextArea, TextField	) : ( editable )
+( ColorPicker, ComboBox, PasswordField, TextArea, TextField				) : ( promptText )
+( CheckBox, RadioButton, ToggleButton									) : ( selected )
+( ListView, ScrollBar,  Separator, Slider								) : ( orientation )
+( MenuButton, SplitMenuButton											) : ( popupSide )
+( ScrollBar, Slider														) : ( value, min, max, blockIncrement )
+( toggleGroup, ToggleGroup												) : ( )
+( *																		) : ( toggleGroup )
+( font, Font															) : ( name, size )
+
+/* ---- Button ---- */
+( Button	) : ( defaultButton, cancelButton )
+
+/* ---- CheckBox ---- */
+( CheckBox	) : ( indeterminate, allowIndeterminate )
+
+/* ---- ChoiceBox ---- */
+( ChoiceBox	) : ( )
+
+/* ---- ColorPicker ---- */
+( ColorPicker	) : ( )
+
+/* ---- ComboBox ---- */
+( ComboBox	) : ( )
+
+/* ---- HTMLEditor ---- */
+( HTMLEditor	) : ( htmlText )
+
+/* ---- Hyperlink ---- */
+( Hyperlink	) : ( visited )
+
+/* ---- Label ---- */
+( Label	) : ( labelFor )
+
+/* ---- ListView ---- */
+( ListView	) : ( )
+
+/* ---- MenuBar ---- */
+( MenuBar	) : ( useSystemMenuBar )
+( menus		) : ( )
+
+/* ---- MenuButton ---- */
+( MenuButton	) : ( contentDisplay )
+
+/* ---- PasswordField ---- */
+( PasswordField	) : ( )
+
+/* ---- ProgressBar / -Indicator ---- */
+( ProgressBar, ProgressIndicator	) : ( progress )
+
+/* ---- RadioButton ---- */
+( RadioButton	) : ( )
+
+/* ---- ScrollBar ---- */
+( ScrollBar	) : ( unitIncrement, visibleAmount )
+
+/* ---- Separator ---- */
+( Separator	) : ( halignment, valignment)
+
+/* ---- Slider ---- */
+( Slider	) : ( snapToTicks, showTickLabels, showTickMarks, minorTickCount, majorTickCount, minorTickUnit,
+				  majorTickUnit )
+
+/* ---- SplitMenuButton ---- */
+( SplitMenuButton	) : ( )
+
+/* ---- TextArea ---- */
+( TextArea	) : ( )
+
+/* ---- TextField ---- */
+( TextField	) : ( )
+
+/* ---- ToggleButton ---- */
+( ToggleButton	) : ( )
+
+/* ---- WebView ---- */
+( WebView ) : ( fontScale, fontSmoothingType )
+
+/* ---------------------- */
+/* ---- Menu Content ---- */
+/* ---------------------- */
+
+( Menu, MenuItem, CustomMenuItem, accelerator	) : ( )
+( CheckMenuItem, RadioMenuItem					) : ( selected )
+( KeyCodeCombination							) : ( code, shortcut, shift, control, alt, meta )
+( SeparatorMenuItem								) : ( hideOnClick )
+
+
+/* ------------------------ */
+/* ---- Popup Controls ---- */
+/* ------------------------ */
+
+( contextMenu, tooltip	) : ( )
+( ContextMenu, Tooltip	) : ( autoFix, autoHide, consumeAutoHidingEvents, hideOnEscape )
+
+/* ----------------------- */
+/* ---- Miscellaneous ---- */
+/* ----------------------- */
+( Region ) : ( )
+
+/* ---------------- */
+/* ---- Shapes ---- */
+/* ---------------- */
+
+/* ---- Common constraints / elements ---- */
+( Arc, Circle, CubicCurve, Ellipse, Line, Polygon, Text	)
+						  : ( smooth, fill, stroke, strokeDashOffset, strokeLineCap, strokeLineJoin, strokeMiterLimit,
+							  strokeType, strokeWidth )
+( Arc, Circle, Ellipse	) : ( centerX, centerY, radiusX, radiusY )
+( CubicCurve, Line		) : ( startX, startY, endX, endY )
+
+/* ---- Arc ---- */
+( Arc	) : ( startAngle, length, type )
+
+/* ---- Circle ---- */
+( Circle	) : ( radius )
+
+/* ---- CubicCurve ---- */
+/* Hell will probably freeze before anyone ever uses this, but we'll implement it anyway */
+( CubicCurve	) : ( controlX1, controlX2, controlY1, controlY2 )
+
+/* ---- Ellipse ---- */
+( Ellipse	) : ( )
+
+/* ---- Line ---- */
+( Line	) : ( )
+
+/* ---- Polygon ---- */
+( Polygon	) : ( )
+( points	) : ( )
+
+/* ---- Text ---- */
+( Text	) : ( x, y, strikethrough, wrappingWidth )

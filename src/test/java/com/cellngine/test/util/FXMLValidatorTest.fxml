@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml">
+  <children>
+    <AnchorPane disable="false" padding="$x2" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="87.0" AnchorPane.leftAnchor="344.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="113.0">
+      <children>
+        <HBox fillHeight="false" layoutX="0.0" layoutY="50.0" prefHeight="100.0" prefWidth="200.0" spacing="7.0">
+          <children>
+            <AnchorPane prefHeight="437.0" prefWidth="198.0" />
+          </children>
+          <padding>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" fx:id="x2" />
+          </padding>
+        </HBox>
+        <Button layoutX="75.0" layoutY="91.0" mnemonicParsing="false" rotate="36.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0" text="Button" translateX="1.0" translateY="1.0" translateZ="1.0">
+          <rotationAxis>
+            <Point3D x="90.0" y="90.0" z="90.0" />
+          </rotationAxis>
+        </Button>
+        <GridPane gridLinesVisible="true" hgap="1.0" layoutX="50.0" layoutY="70.0" vgap="1.0">
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane>
+        <VBox fillWidth="false" layoutX="50.0" layoutY="0.0" padding="$x2" prefHeight="200.0" prefWidth="100.0" spacing="7.0">
+          <children>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+              <children>
+                <FlowPane columnHalignment="CENTER" hgap="1.0" layoutX="-37.0" layoutY="-55.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" prefWrapLength="40.0" rowValignment="TOP" vgap="1.0">
+                  <children>
+                    <TitledPane animated="true" collapsible="false" expanded="false" text="test" textAlignment="CENTER" textFill="#3354ff" textOverrun="WORD_ELLIPSIS" underline="true" wrapText="true">
+                      <content>
+                        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                      </content>
+                      <font>
+                        <Font size="12.0" />
+                      </font>
+                    </TitledPane>
+                  </children>
+                </FlowPane>
+              </children>
+            </Pane>
+          </children>
+        </VBox>
+        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" hmax="3.0" hmin="2.0" hvalue="1.0" layoutX="0.0" layoutY="0.0" pannable="true" prefHeight="200.0" prefViewportHeight="12.0" prefViewportWidth="12.0" prefWidth="200.0" vbarPolicy="ALWAYS" vmax="6.0" vmin="5.0" vvalue="4.0">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+          </content>
+        </ScrollPane>
+        <SplitPane disable="false" dividerPositions="0.29797979797979796" focusTraversable="true" layoutX="0.0" layoutY="20.0" orientation="HORIZONTAL" prefHeight="160.0" prefWidth="200.0">
+          <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+          </items>
+        </SplitPane>
+        <StackPane alignment="BOTTOM_CENTER" layoutX="0.0" layoutY="25.0" prefHeight="150.0" prefWidth="200.0" />
+        <SplitPane dividerPositions="0.5" focusTraversable="true" layoutX="20.0" layoutY="0.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+          <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+          </items>
+        </SplitPane>
+        <TabPane layoutX="0.0" layoutY="0.0" prefHeight="200.0" prefWidth="200.0" rotateGraphic="true" side="LEFT" tabClosingPolicy="ALL_TABS">
+          <tabs>
+            <Tab closable="false" text="Untitled Tab">
+              <content>
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                    <Button layoutX="75.0" layoutY="82.0" mnemonicParsing="false" text="Button" />
+                  </children>
+                </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Untitled Tab 2">
+              <content>
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                    <Button layoutX="48.0" layoutY="137.0" mnemonicParsing="false" text="Button" />
+                  </children>
+                </AnchorPane>
+              </content>
+            </Tab>
+          </tabs>
+        </TabPane>
+        <TilePane hgap="5.0" layoutX="0.0" layoutY="0.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" tileAlignment="TOP_CENTER" vgap="1.0" />
+        <ToolBar layoutX="-33.0" layoutY="86.0" prefWidth="267.0">
+          <items>
+            <Button mnemonicParsing="false" text="Button" />
+          </items>
+        </ToolBar>
+        <Accordion layoutX="-2.0" layoutY="76.0">
+          <expandedPane>
+            <TitledPane fx:id="x1" animated="true" collapsible="false" content="$null" expanded="true" text="untitled" />
+          </expandedPane>
+          <panes>
+            <fx:reference source="x1" />
+            <TitledPane animated="false" text="untitled">
+              <content>
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </TitledPane>
+          </panes>
+        </Accordion>
+        <Region layoutX="0.0" layoutY="0.0" prefHeight="200.0" prefWidth="200.0" />
+      </children>
+    </AnchorPane>
+    <CheckBox allowIndeterminate="true" indeterminate="true" layoutX="91.0" layoutY="17.0" mnemonicParsing="false" selected="true" text="CheckBox" />
+    <Button contentDisplay="BOTTOM" graphicTextGap="1.0" layoutX="14.0" layoutY="14.0" minHeight="-Infinity" mnemonicParsing="false" text="Button" />
+    <ChoiceBox disable="false" focusTraversable="false" layoutX="199.0" layoutY="14.0" opacity="0.7" visible="true">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ChoiceBox>
+    <ColorPicker editable="true" layoutX="300.0" layoutY="14.0" minHeight="19.0" prefHeight="19.0" promptText="qewf" />
+    <ComboBox editable="true" layoutX="421.0" layoutY="14.0" promptText="%key.unspecified">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <HTMLEditor htmlText="Test!&#10;" layoutX="14.0" layoutY="41.0" minWidth="173.0" prefHeight="103.0" prefWidth="521.0" />
+    <Hyperlink layoutX="14.0" layoutY="144.0" text="Hyperlinks" textOverrun="CLIP" visited="true" />
+    <Label labelFor="$x1" layoutX="98.0" layoutY="150.0" text="Label" />
+    <ListView editable="true" layoutX="14.0" layoutY="174.0" orientation="HORIZONTAL" prefHeight="26.0" prefWidth="136.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ListView>
+    <MenuBar layoutX="180.0" layoutY="176.0" prefWidth="102.0" useSystemMenuBar="true">
+      <menus>
+        <Menu mnemonicParsing="false" text="TestMenu">
+          <items>
+            <CheckMenuItem mnemonicParsing="false" selected="true" text="Unspecified Action" />
+            <CustomMenuItem mnemonicParsing="false" text="Unspecified Action">
+              <content>
+                <CheckBox text="Click Me" />
+              </content>
+            </CustomMenuItem>
+            <MenuItem mnemonicParsing="false" text="Action 1">
+              <accelerator>
+                <KeyCodeCombination alt="DOWN" code="A" control="DOWN" meta="DOWN" shift="DOWN" shortcut="DOWN" />
+              </accelerator>
+            </MenuItem>
+            <RadioMenuItem mnemonicParsing="false" selected="true" text="Unspecified Action">
+              <toggleGroup>
+                <ToggleGroup fx:id="q" />
+              </toggleGroup>
+            </RadioMenuItem>
+            <SeparatorMenuItem hideOnClick="true" mnemonicParsing="false" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <MenuButton contentDisplay="TOP" graphicTextGap="1.0" layoutX="305.0" layoutY="178.0" mnemonicParsing="false" popupSide="LEFT" text="MenuButton">
+      <items>
+        <MenuItem mnemonicParsing="false" text="Action 1" />
+        <MenuItem mnemonicParsing="false" text="Action 2" />
+      </items>
+    </MenuButton>
+    <PasswordField editable="false" layoutX="412.0" layoutY="178.0" prefWidth="102.0" promptText="test" text="as" />
+    <ProgressBar layoutX="14.0" layoutY="208.0" prefHeight="14.0" prefWidth="136.0" progress="0.23" />
+    <ProgressIndicator layoutX="166.0" layoutY="208.0" progress="0.35" />
+    <RadioButton layoutX="227.0" layoutY="212.0" mnemonicParsing="false" selected="false" text="RadioButton">
+      <toggleGroup>
+        <ToggleGroup fx:id="h" />
+      </toggleGroup>
+    </RadioButton>
+    <ScrollBar blockIncrement="4.0" layoutX="351.0" layoutY="210.0" max="2.0" min="1.0" orientation="HORIZONTAL" unitIncrement="3.0" value="0.1" visibleAmount="5.0" />
+    <ScrollBar layoutX="491.0" layoutY="208.0" orientation="VERTICAL" prefHeight="42.0" />
+    <Separator halignment="LEFT" layoutX="0.0" layoutY="251.0" orientation="VERTICAL" prefWidth="200.0" valignment="BOTTOM" />
+    <Slider blockIncrement="7.0" layoutX="14.0" layoutY="235.0" majorTickUnit="52.0" max="74.0" min="4.0" minorTickCount="13" orientation="VERTICAL" prefHeight="53.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="6.0" />
+    <SplitMenuButton layoutX="69.0" layoutY="257.0" mnemonicParsing="false" popupSide="LEFT" text="SplitMenuButton">
+      <items>
+        <MenuItem mnemonicParsing="false" text="Action 1" />
+        <MenuItem mnemonicParsing="false" text="Action 2" />
+      </items>
+    </SplitMenuButton>
+    <TextArea editable="false" layoutX="207.0" layoutY="257.0" prefHeight="26.0" prefWidth="136.0" promptText="b" text="a" wrapText="false">
+      <contextMenu>
+        <ContextMenu autoFix="false" autoHide="false" consumeAutoHidingEvents="false" hideOnEscape="false">
+          <items>
+            <MenuItem mnemonicParsing="false" text="test">
+              <accelerator>
+                <KeyCodeCombination alt="ANY" code="A" control="UP" meta="UP" shift="UP" shortcut="UP" />
+              </accelerator>
+            </MenuItem>
+          </items>
+        </ContextMenu>
+      </contextMenu>
+      <tooltip>
+        <Tooltip autoFix="false" autoHide="true" consumeAutoHidingEvents="false" hideOnEscape="false" text="test" />
+      </tooltip>
+    </TextArea>
+    <TextField editable="false" layoutX="367.0" layoutY="253.0" prefHeight="34.0" prefWidth="71.0" promptText="b" text="b" />
+    <ToggleButton layoutX="11.0" layoutY="303.0" mnemonicParsing="false" selected="true" text="Test" toggleGroup="$h" />
+    <WebView fontScale="1.1" fontSmoothingType="LCD" layoutX="548.0" layoutY="24.0" prefHeight="90.0" prefWidth="26.0" />
+    <Arc fill="#fff500" layoutX="113.0" layoutY="328.0" length="275.0" radiusX="100.0" radiusY="100.0" scaleX="0.2888753901423097" scaleY="0.252099990940094" smooth="false" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+    <Circle centerX="1.0" centerY="1.0" fill="DODGERBLUE" layoutX="165.0" layoutY="320.0" radius="15.700041961669921" stroke="#404040" strokeDashOffset="10.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="6.9" strokeType="OUTSIDE" strokeWidth="1.3" />
+    <CubicCurve controlX1="-133.0" controlX2="-113.0" controlY1="-72.0" controlY2="63.0" endX="-87.0" endY="1.0" fill="DODGERBLUE" layoutX="367.0" layoutY="333.0" startX="-150.0" startY="1.0" stroke="BLACK" />
+    <Ellipse fill="DODGERBLUE" layoutX="345.0" layoutY="331.0" radiusX="43.0" radiusY="33.978515625" stroke="BLACK" strokeType="INSIDE" />
+    <Line endX="-39.0" endY="-54.0" layoutX="514.0" layoutY="354.0" startX="-100.0" startY="1.0" />
+    <Polygon fill="DODGERBLUE" layoutX="514.0" layoutY="340.0" scaleX="0.5186960208892821" scaleY="0.43134021287932994" stroke="BLACK" strokeType="INSIDE">
+      <points>
+        <Double fx:value="-50.0" />
+        <Double fx:value="40.0" />
+        <Double fx:value="50.0" />
+        <Double fx:value="40.0" />
+        <Double fx:value="0.0" />
+        <Double fx:value="-60.0" />
+      </points>
+    </Polygon>
+    <Text layoutX="80.0" layoutY="384.0" smooth="false" strikethrough="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Test" underline="true" wrappingWidth="150.0" x="1.0" y="1.0" />
+  </children>
+</AnchorPane>
