@@ -113,10 +113,12 @@ public class ResourceEntry
 		{
 			try
 			{
-				final FileInputStream fin = new FileInputStream(this.resourceFile);
-				fin.skip(this.offset);
+				//Encryption is handled by the this.resourceFile.getInputStream() function
+				InputStream in = this.resourceFile.getInputStream();
 
-				InputStream in = new BoundedInputStream(fin, this.realLength);
+				in.skip(this.offset);
+
+				in = new BoundedInputStream(in, this.realLength);
 
 				if (this.compression == 0x01)
 				{
@@ -190,7 +192,7 @@ public class ResourceEntry
 		{
 			try
 			{
-				this.resourceID = CO.toString(CO.makeHash(this.getInputStream(), "SHA-256"));
+				this.resourceID = CO.toString(CO.makeHash(this.getInputStream(), "SHA-512"));
 			}
 			catch (final Exception e)
 			{
