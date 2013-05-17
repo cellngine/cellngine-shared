@@ -32,7 +32,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * A collection of common operations.
- * 
+ *
  * @author A.J.A. Boer <jboer@jboer.nl>
  * @author qwertty <hellraz0r.386@googlemail.com>
  */
@@ -41,7 +41,7 @@ public class CO
 	/**
 	 * Converts a byte array to a hexadecimal String, courtesy of <a
 	 * href="http://stackoverflow.com/a/9855338">Stack Overflow</a>.
-	 * 
+	 *
 	 * @param bytes
 	 *            The <code>byte</code> array to convert.
 	 * @return A string containing the hexadecimal representation of the given byte array.
@@ -59,12 +59,12 @@ public class CO
 		}
 		return new String(hexChars);
 	}
-	
+
 	/**
 	 * Repeatedly reads data from an <code>InputStream</code> until either <code>length</code> bytes
 	 * have been read or
 	 * the end of the file is reached.
-	 * 
+	 *
 	 * @param source
 	 *            The <code>InputStream</code> to read data from.
 	 * @param length
@@ -90,11 +90,11 @@ public class CO
 		}
 		return contents;
 	}
-	
+
 	/**
 	 * Attempts to invoke the <code>flush()</code>and <code>close()</code> methods on any given
 	 * objects. <code>null</code> parameters will be ignored.
-	 * 
+	 *
 	 * @param objects
 	 *            One or more <code>Object</code>s on which the methods shall be invoked.
 	 */
@@ -123,10 +123,10 @@ public class CO
 			}
 		}
 	}
-	
+
 	/**
 	 * Safely close an {@link java.io.InputStream} object.
-	 * 
+	 *
 	 * @param in
 	 *            The {@link java.io.InputStream InputStream} to close.
 	 */
@@ -140,10 +140,10 @@ public class CO
 		{
 		}
 	}
-	
+
 	/**
 	 * Safely close an {@link java.io.OutputStream} object.
-	 * 
+	 *
 	 * @param in
 	 *            The {@link java.io.OutputStream OutputStream} to close.
 	 */
@@ -157,7 +157,7 @@ public class CO
 		{
 		}
 	}
-	
+
 	/**
 	 * @param o
 	 *            An object to convert to a {@link java.lang.String String}.
@@ -173,7 +173,7 @@ public class CO
 			return "";
 		}
 	}
-	
+
 	/**
 	 * @param bytes
 	 *            A byte array to convert to a {@link java.lang.String String}.
@@ -189,7 +189,7 @@ public class CO
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	/**
 	 * @param o
 	 *            An object to convert to an {@link java.lang.Integer Integer}.
@@ -205,7 +205,7 @@ public class CO
 			return 0;
 		}
 	}
-	
+
 	/**
 	 * @param o
 	 *            An object to convert to an {@link java.lang.Long Long}.
@@ -221,7 +221,7 @@ public class CO
 			return 0l;
 		}
 	}
-	
+
 	/**
 	 * @param o
 	 *            An object to convert to an {@link java.math.BigDecimal BigDecimal}.
@@ -237,10 +237,10 @@ public class CO
 			return new BigDecimal("0.00");
 		}
 	}
-	
+
 	/**
 	 * Reads a file and returns its contents as a byte array.
-	 * 
+	 *
 	 * @param file
 	 *            The file to read.
 	 * @return A byte array representing the contents of the file.
@@ -252,11 +252,11 @@ public class CO
 	public static byte[] getBytesFromFile(final File file) throws FileNotFoundException, IOException
 	{
 		FileInputStream fis = null;
-		
+
 		try
 		{
 			fis = new FileInputStream(file);
-			
+
 			return getBytesFromInputStream(fis, false);
 		}
 		finally
@@ -264,10 +264,10 @@ public class CO
 			closeInputStream(fis);
 		}
 	}
-	
+
 	/**
 	 * Reads an {@link java.io.InputStream InputStream} and returns its contents as a byte array.
-	 * 
+	 *
 	 * @param in
 	 *            The {@link java.io.InputStream InputStream} to read.
 	 * @param close
@@ -281,26 +281,26 @@ public class CO
 	public static byte[] getBytesFromInputStream(final InputStream in, final boolean close) throws IOException
 	{
 		ByteArrayOutputStream baos = null;
-		
+
 		try
 		{
 			baos = new ByteArrayOutputStream();
-			
+
 			byte[] buffer;
 			int i;
-			
+
 			do
 			{
 				buffer = new byte[1024];
-				
+
 				i = in.read(buffer);
-				
+
 				if (i > -1)
 				{
 					baos.write(buffer, 0, i);
 				}
 			} while (i > -1);
-			
+
 			return baos.toByteArray();
 		}
 		finally
@@ -309,11 +309,11 @@ public class CO
 			{
 				closeInputStream(in);
 			}
-			
+
 			closeOutputStream(baos);
 		}
 	}
-	
+
 	/**
 	 * @param input
 	 *            The byte array to perform the hash operation on.
@@ -326,10 +326,10 @@ public class CO
 	public static byte[] makeHash(final byte[] input, final String algorithm) throws NoSuchAlgorithmException
 	{
 		final MessageDigest md = MessageDigest.getInstance(algorithm);
-		
+
 		return md.digest(input);
 	}
-	
+
 	/**
 	 * @param input
 	 *            An {@link java.io.InputStream InputStream} to perform the hash operation on.
@@ -345,25 +345,25 @@ public class CO
 			IOException
 	{
 		final MessageDigest md = MessageDigest.getInstance(algorithm);
-		
+
 		byte[] buffer;
 		int i;
-		
+
 		do
 		{
 			buffer = new byte[1024];
-			
+
 			i = input.read(buffer);
-			
+
 			if (i > -1)
 			{
 				md.update(buffer, 0, i);
 			}
 		} while (i > -1);
-		
+
 		return md.digest();
 	}
-	
+
 	/**
 	 * @param input
 	 *            An {@link java.lang.String String} to perform the hash operation on.
@@ -384,11 +384,11 @@ public class CO
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	/**
 	 * Writes the contents of the provided {@link java.io.InputStream InputStream} to the provided
 	 * {@link java.io.OutputStream OutputStream}.
-	 * 
+	 *
 	 * @param in
 	 *            The {@link java.io.InputStream InputStream} to read from.
 	 * @param out
@@ -400,18 +400,50 @@ public class CO
 	{
 		byte[] buffer;
 		int i;
-		
+
 		do
 		{
 			buffer = new byte[1024];
-			
+
 			i = in.read(buffer);
-			
+
 			if (i > -1)
 			{
 				out.write(buffer, 0, i);
 				out.flush();
 			}
 		} while (i > -1);
+	}
+
+	/**
+	 * Reads a given {@link java.io.InputStream InputStream} object and returns the amount of bytes
+	 * that could be read
+	 * from it.
+	 *
+	 * @param in
+	 *            The {@link java.io.InputStream InputStream} object to get the byte count from.
+	 * @return The amount of bytes represented as an {@link java.lang.Integer Integer}.
+	 * @throws IOException
+	 *             If there was an error while reading the {@link java.io.InputStream InputStream}
+	 *             object.
+	 */
+	public static int getLengthOfInputStream(final InputStream in) throws IOException
+	{
+		int i = 0;
+		int length = 0;
+		byte[] buffer;
+
+		do
+		{
+			buffer = new byte[1024];
+			i = in.read(buffer);
+
+			if (i > -1)
+			{
+				length = length + i;
+			}
+		} while (i > -1);
+
+		return length;
 	}
 }
