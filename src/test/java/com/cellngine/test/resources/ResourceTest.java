@@ -64,37 +64,21 @@ import com.cellngine.resources.ResourceFile;
  */
 public class ResourceTest extends TestCase
 {
-	private static String	TEMP_PATH	= "C:\\Temp\\";
+	private static String	TEMP_PATH		= "C:\\Temp\\";
+	private static byte[]	ENCRYPTION_KEY	= "encryptiontest".getBytes();
 
-	/*
-	 * A simple test. A resource file is created, and resources
-	 * are directly added from a byte array.
-	 *
-	 * The same byte array is added twice but with a different
-	 * filename. This should result in only a single resource
-	 * entry which contains the two filenames.
-	 *
-	 * After writing the resource file it is immediately opened
-	 * and read. The entire resource file is validated at this point.
-	 *
-	 * On pass: The creation of resource files as well as the loading
-	 * of resource files works.
-	 *
-	 * Manual control: The expected file size (last updated: 2013-05-10)
-	 * is 188 bytes (without gzip compression).
-	 */
-	public void test1_1() throws Exception
+	private void test1(final boolean useEncryption, final String fileName) throws Exception
 	{
-		new File(TEMP_PATH + "test1.crf").delete();
+		new File(TEMP_PATH + fileName + ".crf").delete();
 
-		ResourceFile rf = new ResourceFile(TEMP_PATH + "test1.crf");
+		ResourceFile rf = new ResourceFile(TEMP_PATH + fileName + ".crf", useEncryption ? ENCRYPTION_KEY : null);
 
 		rf.addEntry("Hello, world".getBytes(), "dummy.txt");
 		rf.addEntry("Hello, world".getBytes(), "test.txt");
 
-		rf.write();
+		rf.write(useEncryption ? ENCRYPTION_KEY : null);
 
-		rf = new ResourceFile(TEMP_PATH + "test1.crf");
+		rf = new ResourceFile(TEMP_PATH + fileName + ".crf", useEncryption ? ENCRYPTION_KEY : null);
 
 		final List<ResourceEntry> entries = rf.getEntries();
 
@@ -106,42 +90,23 @@ public class ResourceTest extends TestCase
 		}
 	}
 
-	/*
-	 * A resource file is created with several "strange" characters and
-	 * a sufficiently long string that it should generate a gzip-compressed
-	 * data fork.
-	 *
-	 * The same resource file is then reopened and an attempt is made to save
-	 * the same file. In order to do this the original file has to be accessed
-	 * in order to retrieve the data fork of the resource entry that is being
-	 * copied.
-	 *
-	 * After that the resource file is again reopened and validation is performed
-	 * to ensure that 1) the file has been gzipped and 2) that the file contents
-	 * match the input.
-	 *
-	 * On pass: The String in the "input" variable matches the contents of the file,
-	 * gzip compression works, re-saving resource files works.
-	 *
-	 * Manual control: The expected file size (as of 2013-05-10) is 245 bytes.
-	 */
-	public void test2_1() throws Exception
+	private void test2(final boolean useEncryption, final String fileName) throws Exception
 	{
-		new File(TEMP_PATH + "test2.crf").delete();
+		new File(TEMP_PATH + fileName + ".crf").delete();
 
 		final String input = "!@$#ÖËÜµ€012345678901234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678901234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678901234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678901234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678901234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678901234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678901234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678901234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678901234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678901234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678901234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678901234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678901234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678901234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ012345678901234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-		ResourceFile rf = new ResourceFile(TEMP_PATH + "test2.crf");
+		ResourceFile rf = new ResourceFile(TEMP_PATH + fileName + ".crf", useEncryption ? ENCRYPTION_KEY : null);
 
 		rf.addEntry(input.getBytes("UTF-8"), "dummy.txt");
 
-		rf.write();
+		rf.write(useEncryption ? ENCRYPTION_KEY : null);
 
-		rf = new ResourceFile(TEMP_PATH + "test2.crf");
+		rf = new ResourceFile(TEMP_PATH + fileName + ".crf", useEncryption ? ENCRYPTION_KEY : null);
 
-		rf.write();
+		rf.write(useEncryption ? ENCRYPTION_KEY : null);
 
-		rf = new ResourceFile(TEMP_PATH + "test2.crf");
+		rf = new ResourceFile(TEMP_PATH + fileName + ".crf", useEncryption ? ENCRYPTION_KEY : null);
 
 		final List<ResourceEntry> entries = rf.getEntries();
 
@@ -154,39 +119,20 @@ public class ResourceTest extends TestCase
 		}
 	}
 
-	/*
-	 * A resource file is created with a large file (250 MB)
-	 * embedded.
-	 *
-	 * Manual control: The expected file size (last updated: 2013-05-10)
-	 * is 254.993 bytes (with gzip compression).
-	 *
-	 * Manual control: This test should take about 10-14 seconds on a
-	 * high-end (as of 2012) system.
-	 */
-	public void test3_1() throws Exception
+	private void test3_1(final boolean useEncryption, final String fileName) throws Exception
 	{
-		new File(TEMP_PATH + "test3.crf").delete();
+		new File(TEMP_PATH + fileName + ".crf").delete();
 
-		final ResourceFile rf = new ResourceFile(TEMP_PATH + "test3.crf");
+		final ResourceFile rf = new ResourceFile(TEMP_PATH + fileName + ".crf", useEncryption ? ENCRYPTION_KEY : null);
 
 		rf.addEntry(new File(TEMP_PATH + "250mb.bin"));
 
-		rf.write();
+		rf.write(useEncryption ? ENCRYPTION_KEY : null);
 	}
 
-	/*
-	 * The resource file created in test 3.1 is opened for reading.
-	 *
-	 * On pass: The resource file from test 3.1 can be opened and contains
-	 * the right entry.
-	 *
-	 * Manual control: This test should take less than a second on a
-	 * high-end (as of 2012) system.
-	 */
-	public void test3_2() throws Exception
+	private void test3_2(final boolean useEncryption, final String fileName) throws Exception
 	{
-		final ResourceFile rf = new ResourceFile(TEMP_PATH + "test3.crf");
+		final ResourceFile rf = new ResourceFile(TEMP_PATH + fileName + ".crf", useEncryption ? ENCRYPTION_KEY : null);
 
 		final List<ResourceEntry> entries = rf.getEntries();
 
@@ -199,19 +145,9 @@ public class ResourceTest extends TestCase
 		}
 	}
 
-	/*
-	 * The resource file created in test 3.1 is opened for reading.
-	 *
-	 * The byte stream is read and compared against the original.
-	 *
-	 * Comparison took 5-6 seconds on a high-end (as of 2012) system.
-	 *
-	 * On pass: The data from the resource file entry matches the
-	 * original file.
-	 */
-	public void test3_3() throws Exception
+	private void test3_3(final boolean useEncryption, final String fileName) throws Exception
 	{
-		final ResourceFile rf = new ResourceFile(TEMP_PATH + "test3.crf");
+		final ResourceFile rf = new ResourceFile(TEMP_PATH + fileName + ".crf", useEncryption ? ENCRYPTION_KEY : null);
 
 		final List<ResourceEntry> entries = rf.getEntries();
 
@@ -235,6 +171,136 @@ public class ResourceTest extends TestCase
 		}
 	}
 
+	/*
+	 * A simple test. A resource file is created, and resources
+	 * are directly added from a byte array.
+	 *
+	 * The same byte array is added twice but with a different
+	 * filename. This should result in only a single resource
+	 * entry which contains the two filenames.
+	 *
+	 * After writing the resource file it is immediately opened
+	 * and read. The entire resource file is validated at this point.
+	 *
+	 * On pass: The creation of resource files as well as the loading
+	 * of resource files works.
+	 *
+	 * Manual control: The expected file size (last updated: 2013-05-10)
+	 * is 188 bytes (without gzip compression).
+	 */
+	public void test1_1() throws Exception
+	{
+		this.test1(false, "test1");
+	}
+
+	/*
+	 * A resource file is created with several "strange" characters and
+	 * a sufficiently long string that it should generate a gzip-compressed
+	 * data fork.
+	 *
+	 * The same resource file is then reopened and an attempt is made to save
+	 * the same file. In order to do this the original file has to be accessed
+	 * in order to retrieve the data fork of the resource entry that is being
+	 * copied.
+	 *
+	 * After that the resource file is again reopened and validation is performed
+	 * to ensure that 1) the file has been gzipped and 2) that the file contents
+	 * match the input.
+	 *
+	 * On pass: The String in the "input" variable matches the contents of the file,
+	 * gzip compression works, re-saving resource files works.
+	 *
+	 * Manual control: The expected file size (as of 2013-05-10) is 245 bytes.
+	 */
+	public void test2_1() throws Exception
+	{
+		this.test2(false, "test2");
+	}
+
+	/*
+	 * A resource file is created with a large file (250 MB)
+	 * embedded.
+	 *
+	 * Manual control: The expected file size (last updated: 2013-05-10)
+	 * is 254.993 bytes (with gzip compression).
+	 *
+	 * Manual control: This test should take about 10-14 seconds on a
+	 * high-end (as of 2012) system.
+	 */
+	public void test3_1() throws Exception
+	{
+		this.test3_1(false, "test3");
+	}
+
+	/*
+	 * The resource file created in test 3.1 is opened for reading.
+	 *
+	 * On pass: The resource file from test 3.1 can be opened and contains
+	 * the right entry.
+	 *
+	 * Manual control: This test should take less than a second on a
+	 * high-end (as of 2012) system.
+	 */
+	public void test3_2() throws Exception
+	{
+		this.test3_2(false, "test3");
+	}
+
+	/*
+	 * The resource file created in test 3.1 is opened for reading.
+	 *
+	 * The byte stream is read and compared against the original.
+	 *
+	 * Comparison took 5-6 seconds on a high-end (as of 2012) system.
+	 *
+	 * On pass: The data from the resource file entry matches the
+	 * original file.
+	 */
+	public void test3_3() throws Exception
+	{
+		this.test3_3(false, "test3");
+	}
+
+	/*
+	 * A copy of test 1.1 with encryption turned on.
+	 */
+	public void test4_1() throws Exception
+	{
+		this.test1(true, "test4");
+	}
+
+	/*
+	 * A copy of test 2.1 with encryption turned on.
+	 */
+	public void test5_1() throws Exception
+	{
+		this.test2(true, "test5");
+	}
+
+	/*
+	 * A copy of test 3.1 with encryption turned on.
+	 */
+	public void test6_1() throws Exception
+	{
+		this.test3_1(true, "test6");
+	}
+
+	/*
+	 * A copy of test 3.2 with encryption turned on.
+	 */
+	public void test6_2() throws Exception
+	{
+		this.test3_2(true, "test6");
+	}
+
+	/*
+	 * A copy of test 3.3 with encryption turned on.
+	 */
+	public void test6_3() throws Exception
+	{
+		this.test3_3(true, "test6");
+	}
+
 	//Source: http://stackoverflow.com/questions/4245863/fast-way-to-compare-inputstreams
 	private static boolean isEqual(final InputStream i1, final InputStream i2) throws IOException
 	{
@@ -251,20 +317,14 @@ public class ResourceTest extends TestCase
 				final int n1 = ch1.read(buf1);
 				final int n2 = ch2.read(buf2);
 
-				if (n1 == -1 || n2 == -1)
-				{
-					return n1 == n2;
-				}
+				if (n1 == -1 || n2 == -1) { return n1 == n2; }
 
 				buf1.flip();
 				buf2.flip();
 
 				for (int i = 0; i < Math.min(n1, n2); i++)
 				{
-					if (buf1.get() != buf2.get())
-					{
-						return false;
-					}
+					if (buf1.get() != buf2.get()) { return false; }
 				}
 
 				buf1.compact();
