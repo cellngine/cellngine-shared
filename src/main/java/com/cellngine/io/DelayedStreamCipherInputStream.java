@@ -22,9 +22,9 @@ import java.io.InputStream;
 import com.cellngine.crypto.StreamCipher;
 
 /**
- * This helper class automatically wraps a
- * {@link com.cellngine.io.StreamCipherInputStream.StreamCipherInputStream StreamCipherInputStream}
- * object around the provided {@link java.io.InputStream InputStream} object when a given position
+ * This helper class automatically wraps a {@link com.cellngine.io.StreamCipherInputStream
+ * StreamCipherInputStream} object around the provided {@link java.io.InputStream InputStream}
+ * object when a given position
  * within the stream has been reached.
  *
  * @author A.J.A. Boer <jboer@jboer.nl>
